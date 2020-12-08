@@ -1,3 +1,8 @@
+<?php 
+$filename = basename($_SERVER['REQUEST_URI']);
+$file = explode('?',$filename);
+$menu = array('linuxhosting.php','wordpresshosting.php','windowshosting.php','cmshosting.php',);
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -20,6 +25,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--script-->
 <script src="js/modernizr.custom.97074.js"></script>
 <script src="js/jquery.chocolat.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="screen">
 <!--lightboxfiles-->
 <link rel="stylesheet" href="css/swipebox.css">
@@ -27,13 +34,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			    <script type="text/javascript">
 					jQuery(function($) {
 						$(".swipebox").swipebox();
-					});
-				</script>
-<script type="text/javascript">
-	$(function() {
-	$('.team a').Chocolat();
-	});
-</script>	
+					});</script>	
 <script type="text/javascript" src="js/jquery.hoverdir.js"></script>	
 						<script type="text/javascript">
 							$(function() {
@@ -66,23 +67,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
-                                <li><a href="about.php">About</a></li>
-                                <li><a href="blog.php">Blog</a></li>
-                                <li><a href="pricing.php">Pricing</a></li>
-                                <li><a href="services.php">Services</a></li>
-								<li class="dropdown">
-									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
+								<li <?php if($file[0]=='index.php') : ?> class="active"<?php endif; ?> ><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
+                                <li <?php if($file[0]=='about.php') : ?> class="active"<?php endif; ?>><a href="about.php">About</a></li>
+                                <li <?php if($file[0]=='blog.php') : ?> class="active"<?php endif; ?>><a href="blog.php">Blog</a></li>
+                                <li <?php if($file[0]=='pricing.php') : ?> class="active"<?php endif; ?>><a href="pricing.php">Pricing</a></li>
+                                <li <?php if($file[0]=='services.php') : ?> class="active"<?php endif; ?>><a href="services.php">Services</a></li>
+								<li class="dropdown <?php if(in_array($file[0], $menu)) : ?> active <?php endif; ?>">
+									<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
-										<li><a href="linuxhosting.php">Linux hosting</a></li>
-										<li><a href="wordpresshosting.php">WordPress Hosting</a></li>
-										<li><a href="windowshosting.php">Windows Hosting</a></li>
-										<li><a href="cmshosting.php">CMS Hosting</a></li>
+										<li <?php if($file[0]=='linuxhosting.php') : ?> class="active"<?php endif; ?>><a href="linuxhosting.php">Linux hosting</a></li>
+										<li <?php if($file[0]=='wordpresshosting.php') : ?> class="active"<?php endif; ?>><a href="wordpresshosting.php">WordPress Hosting</a></li>
+										<li <?php if($file[0]=='windowshosting.php') : ?> class="active"<?php endif; ?>><a href="windowshosting.php">Windows Hosting</a></li>
+										<li <?php if($file[0]=='cmshosting.php') : ?> class="active"<?php endif; ?>><a href="cmshosting.php">CMS Hosting</a></li>
 									</ul>
 								
-                                <li><a href="contact.php">Contact</a></li>
-                                <li><a href="login.php">Login</a></li>
-                               <li><i class="fas fa-shopping-cart"></i></li> 
+                                <li <?php if($file[0]=='contact.php') : ?> class="active"<?php endif; ?>><a href="contact.php">Contact</a></li>
+                                <li <?php if($file[0]=='login.php') : ?>class="active"<?php endif; ?>><a href="login.php">Login</a></li>
+                               <li <?php if($file[0]=='cart.php') : ?> class="active"<?php endif; ?>><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></li> 
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->

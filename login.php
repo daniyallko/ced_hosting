@@ -1,5 +1,5 @@
 <?php include('header.php'); ?>
-		<!---login--->
+<!---login--->
 			<div class="content">
 				<div class="main-1">
 					<div class="container">
@@ -13,17 +13,17 @@
 								<div class="col-md-6 login-right">
 									<h3>registered</h3>
 									<p>If you have an account with us, please log in.</p>
-									<form>
+									<form action="midd.php" method="post">
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text"> 
+										<input type="email" for="email" name="email" required> 
 									  </div>
 									  <div>
 										<span>Password<label>*</label></span>
-										<input type="password"> 
+										<input type="password" for="password" name="password" required> 
 									  </div>
 									  <a class="forgot" href="#">Forgot Your Password?</a>
-									  <input type="submit" value="Login">
+									  <input type="submit" value="Login" name="log">
 									</form>
 								</div>	
 								<div class="clearfix"> </div>
