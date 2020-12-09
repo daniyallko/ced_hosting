@@ -1,4 +1,5 @@
 <?php 
+session_start();
 $filename = basename($_SERVER['REQUEST_URI']);
 $file = explode('?',$filename);
 $menu = array('linuxhosting.php','wordpresshosting.php','windowshosting.php','cmshosting.php',);

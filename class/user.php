@@ -25,7 +25,7 @@ class user{
                      if ($row['is_admin']==1){
 
                      $_SESSION['userdata'] = array('username'=>$row['name'],'user_id'=>$row['user_id'],'is_admin'=>$row['is_admin']);
-                     header('Location: admin.php');
+                     header('Location: admin/index.php');
                      }
                      if($row['active']==0)
                      {
@@ -70,6 +70,17 @@ class user{
                 
             }
         }
+
+        if ($password == $password2) {
+            
+            $sql = "SELECT * from tbl_user WHERE mobile like '$mobile'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $errors[] = array('input' => 'result', 'msg' => 'mobile already exists');
+                echo '<p class="bg-danger text-center">Mobile Number already registered</p>';
+                
+            }
+        }
         
 
         if(count($errors)==0 )
@@ -79,14 +90,17 @@ class user{
             $sql = "INSERT INTO tbl_user(`name`, `password`, `email`,`mobile`,`security_question`,`security_answer`,`is_admin`) VALUES('".$name."', '".$password."', '".$email."', '".$mobile."','".$ques."','".$ans."',0)";
 
             if ($conn->query($sql) === true) {
+
                 echo '<script>alert("Registration Successful, Going to Login Page");
-                     window.location.href = "login.php";</script>';
-            }
+                    window.location.href = "login.php";</script>';
+                
+        }
              else {
                // $errors[] = array('input'=>'form','msg'=>$conn->errors);
             }
         }
            
-     }
+    }
+    
 }
 ?>

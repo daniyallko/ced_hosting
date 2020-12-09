@@ -6,18 +6,18 @@
 		<div class="container">
 			<div class="register">
 			<div class="register-but">
-		  	  <form action="midd.php" method="post" onsubmit="(validate())"> 
+		  	  <form action="midd.php" method="post" onsubmit="return validate()"> 
 				 <div class="register-top-grid">
 					<h3>personal information</h3>
 					 <div>
 						<span>Name<label>*</label></span>
-						<input type="text" for="name" name="name" id="name" pattern="^[a-zA-Z_]+( [a-zA-Z_]+)*$" required> 
+						<input type="text" for="name" name="name" id="name" pattern="^[a-zA-Z]+( [a-zA-Z]+)*$" autocomplete="off" required> 
 					 </div>
 					
 					
 					 <div>
 						 <span>Mobile<label>*</label></span>
-						 <input type="text" for="mobile" name="mobile" id="mobile" required> 
+						 <input type="text" for="mobile" name="mobile" id="mobile" autocomplete="off" required> 
 					 </div>
 					 <div class="clearfix"> </div>
 					   <a class="news-letter" href="#">
@@ -29,7 +29,7 @@
 							<h3>login information</h3>
 							<div>
 								<span>Email Address<label>*</label></span>
-								<input type="email" for="email" name="email" id="email" required> 
+								<input type="email" for="email" name="email" id="email" autocomplete="off" required> 
 							 </div>
 							 </div>
 							 <div class="clearfix"> </div>
@@ -59,7 +59,7 @@
 					 </div>
 					 <div>
 						<span>Answer<label>*</label></span>
-						<input type="text" for="ans" name="ans" id="ans" pattern="^[a-zA-Z_]+[a-zA-Z0-9_]*$" required> 
+						<input type="text" for="ans" name="ans" id="ans" pattern="^([a-zA-Z0-9]+[a-zA-Z0-9])*$" required> 
 					 </div>
 					</div>
 							 
