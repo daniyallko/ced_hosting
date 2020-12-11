@@ -1,6 +1,6 @@
 <?php
 
-require('dbcon.php');
+require 'dbcon.php';
 
 class user{
 
@@ -87,13 +87,13 @@ class user{
         {
             setcookie("email", $email, time() + 60 * 60 * 24);
             $password = md5($password);
-            $sql = "INSERT INTO tbl_user(`name`, `password`, `email`,`mobile`,`security_question`,`security_answer`,`is_admin`) VALUES('".$name."', '".$password."', '".$email."', '".$mobile."','".$ques."','".$ans."',0)";
+            $sql = "INSERT INTO tbl_user(`name`, `password`, `email`,`mobile`,`security_question`,`security_answer`,`is_admin`)
+             VALUES('".$name."', '".$password."', '".$email."', '".$mobile."','".$ques."','".$ans."',0)";
 
             if ($conn->query($sql) === true) {
-
-                echo '<script>alert("Registration Successful, Going to Login Page");
-                    window.location.href = "login.php";</script>';
-                
+                $_SESSION['Varifyuser'] = array('email'=>$email,'mob'=>$mobile,'name'=>$name);
+                echo '<script>alert("Registration Successful, Going to Verification Page");
+                    window.location.href = "otp.php";</script>';    
         }
              else {
                // $errors[] = array('input'=>'form','msg'=>$conn->errors);
@@ -101,6 +101,8 @@ class user{
         }
            
     }
+
+   
     
 }
 ?>

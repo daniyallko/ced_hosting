@@ -1,3 +1,4 @@
+$(document).ready( function () {
 $("#mobile").bind("keypress", function (e) {
     var keyCode = e.which ? e.which : e.keyCode
     if (!(keyCode >= 48 && keyCode <= 57)) {
@@ -102,4 +103,100 @@ function validate() {
     }
 
 }
+$('.enteremailOTP').hide();
+$('#sendemailOTP').click(function(){
+    console.log('send email');
+    $email = $("#emailvalue").val();
+    $name = $("#namevalue").val();
+    $.ajax({
+        url: 'midd.php',
+        type: 'POST',
+        data: {
+            email: $email,
+            name: $name,
+            action: 'sendOTPEmail'
+        },
+        success: function(result) {
+            console.log(result);
+            $("#resendmsgEmail").html("Varification code has been sent on ")
+            $(".sendemailOTP").hide();
+            $(".enteremailOTP").show();
+        },
+        error: function() {
 
+        }
+    })
+    
+});
+
+$('.entermobOTP1').hide();
+$('#sendmobOTP').click(function(){
+    $mob = $("#mobvalue").val();
+    $name = $("#namevalue1").val();
+    $.ajax({
+        url: 'midd.php',
+        type: 'POST',
+        data: {
+            mob: $mob,
+            name: $name,
+            action: 'sendOTPmob'
+        },
+        success: function(result) {
+            console.log(result);
+            
+            $(".sendemobOTP").hide();
+            $(".enteremobOTP1").show();
+        },
+        error: function() {
+
+        }
+    })
+});
+
+$("#resendOTPtomail").click(function() {
+    console.log('resend email');
+    $email = $("#emailvalue").val();
+    $name = $("#namevalue").val();
+    $.ajax({
+        url: 'midd.php',
+        type: 'POST',
+        data: {
+            email: $email,
+            name: $name,
+            action: 'sendOTPEmail'
+        },
+        success: function(result) {
+            console.log(result);
+            $("#resendmsgEmail").html("Varification code has been re-sent on ")
+         
+        },
+        error: function() {
+
+        }
+    })
+})
+
+$('#reentermobOTP').click(function(){
+    $mob = $("#mobvalue").val();
+    $name = $("#namevalue1").val();
+    $.ajax({
+        url: 'midd.php',
+        type: 'POST',
+        data: {
+            mob: $mob,
+            name: $name,
+            action: 'sendOTPmob'
+        },
+        success: function(result) {
+            console.log(result);
+            $("#resendmsgEmail").html("Varification code has been re-sent on ")
+            
+        },
+        error: function() {
+
+        }
+    })
+});
+
+    $('#tbl').DataTable();
+} );

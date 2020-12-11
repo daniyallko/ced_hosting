@@ -1,8 +1,17 @@
 <?php 
 session_start();
+
+require 'class/product.php';
+
+$adm = new product();
+$admc = new dbcon();
+$show = $adm->categ($admc->conn);
+
 $filename = basename($_SERVER['REQUEST_URI']);
 $file = explode('?',$filename);
 $menu = array('linuxhosting.php','wordpresshosting.php','windowshosting.php','cmshosting.php',);
+
+
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -76,10 +85,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="dropdown <?php if(in_array($file[0], $menu)) : ?> active <?php endif; ?>">
 									<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
-										<li <?php if($file[0]=='linuxhosting.php') : ?> class="active"<?php endif; ?>><a href="linuxhosting.php">Linux hosting</a></li>
-										<li <?php if($file[0]=='wordpresshosting.php') : ?> class="active"<?php endif; ?>><a href="wordpresshosting.php">WordPress Hosting</a></li>
-										<li <?php if($file[0]=='windowshosting.php') : ?> class="active"<?php endif; ?>><a href="windowshosting.php">Windows Hosting</a></li>
-										<li <?php if($file[0]=='cmshosting.php') : ?> class="active"<?php endif; ?>><a href="cmshosting.php">CMS Hosting</a></li>
+									<?php foreach($show as $key=>$val) { ?>
+									<li <?php if($file[0]==$val['link']) : ?> class="active"<?php endif; ?>><a href='<?php echo $val["link"]; ?>'><?php echo $val['prod_name']; ?></a></li>
+									<?php } ?>
 									</ul>
 								
                                 <li <?php if($file[0]=='contact.php') : ?> class="active"<?php endif; ?>><a href="contact.php">Contact</a></li>
