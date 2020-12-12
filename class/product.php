@@ -5,7 +5,7 @@ class product
 {
     function categ($conn)
     {
-        $sql = "SELECT * FROM tbl_product WHERE link IS NOT NULL";
+        $sql = "SELECT * FROM tbl_product WHERE link IS NOT NULL ";
         $result = $conn->query($sql);
         $appr=array();
         while($row = $result->fetch_assoc()){
@@ -82,6 +82,7 @@ class product
                 
         } else {
           echo "Error updating record: " . $conn->error;
+          $sql = "DELETE FROM tbl_product WHERE id=$last_id";
         }
     }
 
@@ -95,5 +96,54 @@ class product
           echo "Error updating record: " . $conn->error;
         }
     }
+
+    function vprod($conn)
+    {
+        $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id";
+        $result = $conn->query($sql);
+        $appr=array();
+        while($row = $result->fetch_assoc()){
+            array_push($appr, $row);
+        }
+        return $appr;
+    }
+
+    function eprod($cname,$parnt,$link,$id,$mprice,$aprice,$sku,$jdesc,$ava,$conn)
+    {
+        $sql = "UPDATE tbl_product SET prod_name='$cname' , link = '$link' , prod_parent_id=$parnt , prod_available = $ava WHERE id = $id";
+
+       if ($conn->query($sql) === TRUE) {
+        
+        } 
+        else{
+            echo $conn->error;
+        }
+
+        $sql1 = "UPDATE tbl_product_description SET description = '$jdesc' , mon_price = $mprice , annual_price = $aprice , sku = '$sku' WHERE prod_id = $id";
+        if ($conn->query($sql1) === TRUE) {
+            echo '<script>alert("Product Edited Successful");
+            window.location.href = "viewprod.php";</script>';
+                
+        } else {
+          echo "Error updating record: " . $conn->error;
+         
+        }
+
+
+    }
+
+    function delp($id,$conn)
+    {
+        $sql = "DELETE tbl_product , tbl_product_description from tbl_product JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id WHERE tbl_product_description.prod_id='$id'";
+        if ($conn->query($sql) === TRUE) {
+            echo '<script>alert("Product Deleted Successful");
+            window.location.href = "viewprod.php";</script>';
+                
+        } else {
+          echo "Error updating record: " . $conn->error;
+        }
+    }
+
+
 }
 ?>

@@ -6,55 +6,127 @@ $("#mobile").bind("keypress", function (e) {
     }
 });
 
-var pat = /(\d)\1{9}/g;
-var count_mob = 0;
-$("#mobile").bind("keypress", function (e) {
+var count_mob=0;
+var count_mob2=0;
+var count_pass=0;
+var count_cpass=0;
+var c=0;
+var v=0;
 
-    mobile_no = $("#mobile").val();
-    count_mob += $("#mobile").length;
-    var mob1 = $("#mobile").val().substr(1, 10);
-    if ($("#mobile").val() == "") {
-        count_mob = 0;
-    }
-    if (e.keyCode == 8) {
-        count_mob = count_mob - 2;
-    }
-    console.log(count_mob)
+$("#mobile").bind("keyup", function (e) {
 
-    var fchar = $("#mobile").val().substr(0, 1);
-    var schar = $("#mobile").val().substr(1, 1);
+    mobile_no=$("#mobile").val();
+    count_mob+=$("#mobile").length;
 
-    if (fchar == 0) {
+    var fchar=$("#mobile").val().substr(0, 1);
+    var schar=$("#mobile").val().substr(1,1);
 
-        $('#mobile').attr('maxlength', '11');
-        $('#mobile').attr('minlength', '11');
-        if (count_mob >= 10) {
-            count_mob = 0;
-            if (pat.test(mob1)) {
-                mob1 = "";
+    if(fchar==0) {
+        $('#mobile').attr('maxlength','11');
+        $('#mobile').attr('minlength','11');
+        if(count_mob==10) {
+            for(i=1;i<11;i++) {
+                var a=$("#mobile").val().substr(i,1);
+                var b=$("#mobile").val().substr(i+1,1);
+                if(a==b) {
+                    v++;
+                    
+                }
+                if(v==10) {
                 $("#mobile").val("");
+                count_mob=0;
+                v=0;
+
+                }
             }
         }
-        if (schar == 0) {
-            count_mob = 1;
+        if(schar==0)
+        {
             $("#mobile").val(0);
-            if (fchar == "") {
+            count_mob=0;
+            
+            if(fchar=="")
+            {
                 $("#mobile").val("");
+                count_mob=0;
             }
+            
         }
     } else {
-        $('#mobile').attr('maxlength', '10');
-        $('#mobile').attr('minlength', '10');
-        if (count_mob >= 9) {
-            count_mob = 0;
-            if (pat.test(mobile_no)) {
-                mobile_no = "";
+        $('#mobile').attr('maxlength','10');
+        $('#mobile').attr('minlength','10');
+        //console.log(count_mob2);
+        console.log(count_mob);
+        if(count_mob==10) {
+        for(i=0;i<10;i++) {
+            var a=$("#mobile").val().substr(i,1);
+            var b=$("#mobile").val().substr(i+1,1);
+            if(a==b) {
+                v++;
+                
+                
+            }
+            if(v==9) {
                 $("#mobile").val("");
+                count_mob=0;
+                v=0;
 
             }
         }
     }
+    }
 });
+
+
+// var pat = /(\d)\1{9}/g;
+// var count_mob = 0;
+// $("#mobile").bind("keypress", function (e) {
+
+//     mobile_no = $("#mobile").val();
+//     count_mob += $("#mobile").length;
+//     var mob1 = $("#mobile").val().substr(1, 10);
+//     if ($("#mobile").val() == "") {
+//         count_mob = 0;
+//     }
+//     if (e.keyCode == 8) {
+//         count_mob = count_mob - 2;
+//     }
+//     console.log(count_mob)
+
+//     var fchar = $("#mobile").val().substr(0, 1);
+//     var schar = $("#mobile").val().substr(1, 1);
+
+//     if (fchar == 0) {
+
+//         $('#mobile').attr('maxlength', '11');
+//         $('#mobile').attr('minlength', '11');
+//         if (count_mob >= 10) {
+//             count_mob = 0;
+//             if (pat.test(mob1)) {
+//                 mob1 = "";
+//                 $("#mobile").val("");
+//             }
+//         }
+//         if (schar == 0) {
+//             count_mob = 1;
+//             $("#mobile").val(0);
+//             if (fchar == "") {
+//                 $("#mobile").val("");
+//             }
+//         }
+//     } else {
+//         $('#mobile').attr('maxlength', '10');
+//         $('#mobile').attr('minlength', '10');
+//         if (count_mob >= 9) {
+//             count_mob = 0;
+//             if (pat.test(mobile_no)) {
+//                 mobile_no = "";
+//                 $("#mobile").val("");
+
+//             }
+//         }
+//     }
+// });
 
 
 
@@ -199,4 +271,13 @@ $('#reentermobOTP').click(function(){
 });
 
     $('#tbl').DataTable();
+
+
+    $('#frm input[type="text"]').blur(function(){
+        if(!$(this).val()){
+            $(this).addClass("error");
+        } else{
+            $(this).removeClass("error");
+        }
+    });
 } );

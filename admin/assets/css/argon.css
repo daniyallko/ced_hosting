@@ -69,6 +69,15 @@ html
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+#logo1{
+    color: #e7663f;
+}
+#logo2
+{
+    color: white;
+    background-color: #7277d5;
+    border-radius: 20px;
+}
 
 article,
 aside,

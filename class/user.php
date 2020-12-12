@@ -102,6 +102,30 @@ class user{
            
     }
 
+    function verifyEmail($connn,$email) {
+
+        $sql="UPDATE tbl_user SET `email_approved`=1 , `active`=1 WHERE `email`='".$email."'";
+        if($connn->con->query($sql)==true) {
+
+           unset($_SESSION['email']);
+           unset($_SESSION['name']);
+           unset($_SESSION['mobile']);
+           unset($_SESSION['otp']);
+        }
+    }
+
+    function verifyMobile($connn,$mobile) {
+
+        $sql="UPDATE tbl_user SET `phone_approved`=1 , `active`=1 WHERE `mobile`='".$mobile."'";
+        if($connn->con->query($sql)==true) {
+
+            unset($_SESSION['email']);
+            unset($_SESSION['name']);
+            unset($_SESSION['mobile']);
+            unset($_SESSION['otp1']);
+        }
+    }
+
    
     
 }

@@ -60,5 +60,42 @@ if(isset($_POST['prdct']))
     $pdes = $adm->addp($cname,$link,$id,$mprice,$aprice,$sku,$jdesc,$admc->conn);
 }
 
+if(isset($_POST['eprod']))
+{
+    $parnt = $_POST['parnt'];
+    $id = $_POST['edid'];
+    $cname = $_POST['name'];
+    $link = $_POST['link'];
+    $mprice = $_POST['mprice'];
+    $aprice = $_POST['aprice'];
+    $sku = $_POST['sku'];
+    $wspace = $_POST['wspace'];
+    $band = $_POST['band'];
+    $dom = $_POST['dom'];
+    $lang = $_POST['lang'];
+    $mail = $_POST['mail'];
+    $ava = $_POST['stat'];
+    
+    $desc = array('wspace'=>$wspace,'band'=>$band,'dom'=>$dom,'lang'=>$lang,'mail'=>$mail);
+    $jdesc = json_encode($desc);
+
+    $adm = new product();
+    $admc = new dbcon();
+
+    $pdes = $adm->eprod($cname,$parnt,$link,$id,$mprice,$aprice,$sku,$jdesc,$ava,$admc->conn);
+}
+
+if(isset($_GET['action']))
+{
+    if($_GET['action']=='delp')
+    {
+        $id=$_GET['id'];
+        $adm = new product();
+        $admc = new dbcon();
+        $show = $adm->delp($id,$admc->conn);
+    }
+}
+
+
 
 ?>

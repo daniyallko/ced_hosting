@@ -42,6 +42,7 @@
   <script src="assets/js/argon.js?v=1.2.0"></script>
   <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
   <script src="../js/script.js"></script>
+  <script>src="temp.js"</script>
 </body>
 
 </html>

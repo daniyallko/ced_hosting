@@ -39,7 +39,7 @@ $show = $adm->categ($admc->conn);
 
 <div class="col-xl-12 order-xl-1">
     <div class="card-body">
-        <form action="amidd.php" method="post">
+        <form id="frm" action="amidd.php" method="post">
             <h1 class="text-center  mb-4">Enter Product Details</h1>
             <div class="pl-lg-4">
                 <div class="row">
@@ -47,7 +47,7 @@ $show = $adm->categ($admc->conn);
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Select Product Category</label>
                             <!-- <input type="text" id="input-username" class="form-control" placeholder="Username" value="lucky.jesse"> -->
-                            <select name="pcat" id="pcat" class="form-control" required>
+                            <select  name="pcat" id="pcat" class="form-control" required>
                             <option value="" selected disabled hidden>Select Category</option>
                             <?php foreach($show as $key=>$val) { ?>
                             <option value="<?php echo $val['id'] ?>"><?php echo $val['prod_name'] ?></option>
@@ -86,13 +86,13 @@ $show = $adm->categ($admc->conn);
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Enter Monthly Price</label>
-                            <input type="text" name="mprice" id="input-username" class="form-control" placeholder="ex: 23" required>
+                            <input type="text" name="mprice" maxlength="15" id="input-username" class="form-control" placeholder="ex: 23" required>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-email">Enter Annual Price</label>
-                            <input type="text" name="aprice" id="input-email" class="form-control" placeholder="ex: 23" required>
+                            <input type="text" name="aprice" maxlength="15" id="input-email" class="form-control" placeholder="ex: 23" required>
                         </div>
                     </div>
                 </div>
@@ -112,14 +112,14 @@ $show = $adm->categ($admc->conn);
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-username">Web Space(in GB)</label>
+                            <label class="form-control-label" maxlength="5" for="input-username">Web Space(in GB)</label>
                             <input type="text" name="wspace" id="input-username" class="form-control" placeholder="Web Space(in GB)" required>
                             <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" for="input-email">Bandwidth (in GB)</label>
+                            <label class="form-control-label" maxlength="5" for="input-email">Bandwidth (in GB)</label>
                             <input type="text" name="band" id="input-email" class="form-control" placeholder="Bandwidth (in GB)" required>
                             <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                         </div>

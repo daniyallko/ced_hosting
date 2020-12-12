@@ -41,9 +41,9 @@
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header  align-items-center">
-        <a class="navbar-brand" href="javascript:void(0)">
-          <img src="assets/img/brand/blue.png" class="navbar-brand-img" alt="...">
-        </a>
+        
+        <h1><a class="navbar-brand" href="index.php"> <span id="logo1">Ced</span><span id="logo2">Hosting</span></a></h1>
+        
       </div>
       <div class="navbar-inner">
         <!-- Collapse -->
@@ -75,7 +75,7 @@
                 </a>
             </ul>
             <ul class="nav-item">
-                <a class="nav-link" href="">
+                <a class="nav-link" href="viewprod.php">
                     <i class="ni ni-single-02 text-yellow"></i>
                     <span class="nav-link-text">View Product</span>
                 </a>
