@@ -16,7 +16,18 @@ class product
 
     function categp($conn)
     {
-        $sql = "SELECT * FROM tbl_product WHERE link IS NULL";
+        $sql = "SELECT * FROM tbl_product WHERE prod_parent_id=0";
+        $result = $conn->query($sql);
+        $appr=array();
+        while($row = $result->fetch_assoc()){
+            array_push($appr, $row);
+    }
+    return $appr;
+    }
+
+    function catpage($id,$conn)
+    {
+        $sql = "SELECT * FROM tbl_product WHERE id=$id";
         $result = $conn->query($sql);
         $appr=array();
         while($row = $result->fetch_assoc()){
@@ -100,6 +111,17 @@ class product
     function vprod($conn)
     {
         $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id";
+        $result = $conn->query($sql);
+        $appr=array();
+        while($row = $result->fetch_assoc()){
+            array_push($appr, $row);
+        }
+        return $appr;
+    }
+
+    function catpagev($id,$conn)
+    {
+        $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id WHERE tbl_product.prod_parent_id=$id";
         $result = $conn->query($sql);
         $appr=array();
         while($row = $result->fetch_assoc()){

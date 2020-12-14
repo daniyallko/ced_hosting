@@ -9,7 +9,7 @@ $show = $adm->categ($admc->conn);
 
 $filename = basename($_SERVER['REQUEST_URI']);
 $file = explode('?',$filename);
-$menu = array('linuxhosting.php','wordpresshosting.php','windowshosting.php','cmshosting.php',);
+$menu = array('catpage.php?id=5');
 
 
 ?>
@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 									<ul class="dropdown-menu">
 									<?php foreach($show as $key=>$val) { ?>
-									<li <?php if($file[0]==$val['link']) : ?> class="active"<?php endif; ?>><a href='<?php echo $val["link"]; ?>'><?php echo $val['prod_name']; ?></a></li>
+									<li <?php if($file[0]==$val['link']) : ?> class="active"<?php endif; ?>><a href='catpage.php?id=<?php echo $val["id"]; ?>'><?php echo $val['prod_name']; ?></a></li>
 									<?php } ?>
 									</ul>
 								

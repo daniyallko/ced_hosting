@@ -38,8 +38,7 @@ class user{
                      }
                      
                  } 
-             }
-             
+             } 
              else 
             {
                 $errors[] = array('input'=>'form','msg'=>'Invalid Login Details');

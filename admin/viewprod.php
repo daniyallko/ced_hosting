@@ -149,7 +149,7 @@ $part = $adm->categ($admc->conn);
                   </tr>
                   <!-- Modal -->
 <div class="modal fade" id="myModal<?php echo $val['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="card bg-secondary border-0">
             <div class="card-header bg-transparent pb-5">
@@ -176,15 +176,15 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Name</span>
                     </div>
-                    <input class="form-control" name="name" placeholder="Category Name" value="<?php echo $val['prod_name']; ?>" type="text">
+                    <input class="form-control" name="name" placeholder="Product Name" value="<?php echo $val['prod_name']; ?>" type="text">
                   </div>
                 </div>
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Web space</span>
                     </div>
                     <input class="form-control" name="wspace" placeholder="Web Space(GB)" value="<?php echo $desc->wspace; ?>" type="text">
                   </div>
@@ -192,7 +192,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Bandwidth</span>
                     </div>
                     <input class="form-control" name="band" placeholder="Bandwidth(GB)" value="<?php echo $desc->band; ?>" type="text">
                   </div>
@@ -200,7 +200,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Domain</span>
                     </div>
                     <input class="form-control" name="dom" placeholder="Free Domain" value="<?php echo $desc->dom; ?>" type="text">
                   </div>
@@ -208,7 +208,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Language</span>
                     </div>
                     <input class="form-control" name="lang" placeholder="Language/Technology" value="<?php echo $desc->lang; ?>" type="text">
                   </div>
@@ -216,7 +216,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Mailbox</span>
                     </div>
                     <input class="form-control" name="mail" placeholder="Mailbox" value="<?php echo $desc->mail; ?>" type="text">
                   </div>
@@ -224,7 +224,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Monthly Price</span>
                     </div>
                     <input class="form-control" name="mprice" placeholder="Monthly Price" value="<?php echo $val['mon_price']; ?>" type="text">
                   </div>
@@ -232,7 +232,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Annual Price</span>
                     </div>
                     <input class="form-control" name="aprice" placeholder="Annual Price" value="<?php echo $val['annual_price']; ?>" type="text">
                   </div>
@@ -240,7 +240,7 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative mb-3">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">SKU</span>
                     </div>
                     <input class="form-control" name="sku" placeholder="SKU" value="<?php echo $val['sku']; ?>" type="text">
                   </div>
@@ -248,9 +248,9 @@ $part = $adm->categ($admc->conn);
                 <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
-                      <span class="input-group-text"></span>
+                      <span class="input-group-text text-dark">Product Link</span>
                     </div>
-                    <input class="form-control" name="link" placeholder="Category Link" value="<?php echo $val['link']; ?>" type="text">
+                    <input class="form-control" name="link" placeholder="Product Link" value="<?php echo $val['link']; ?>" type="text">
                   </div>
                 </div>
                 <div class="form-group">

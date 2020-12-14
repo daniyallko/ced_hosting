@@ -1,42 +1,42 @@
 $(document).ready(function() {
     $('.ctable').DataTable();
-});
 
-$("#pcat").focusout(function() {
-    $categoryid = $("#pcat").val();
-    if ($categoryid == "" || $categoryid == null) {
-        $("#prodCategory").html("*Select Category");
-        $("#prodCategory").show();
-        $(this).css('border', 'solid 3px red');
-    } else {
-        $("#prodCategory").hide();
-        $(this).css('border', 'solid 3px green');
-    }
-})
+
+    $("#pcat").focusout(function() {
+        $categoryid = $("#pcat").val();
+        if ($categoryid == "" || $categoryid == null) {
+            $("#prCat").html("*Select Category");
+            $("#prCat").show();
+            $(this).css('border', 'solid 3px red');
+        } else {
+            $("#prCat").hide();
+            $(this).css('border', 'solid 3px green');
+        }
+    })
 
 $("#pname").focusout(function() {
     $pname = $("#pname").val();
     var ans1 = $pname.replace(/ /g, '');
     var ans2 = Number(ans1);
     if ($pname == "" || $pname == null) {
-        $("#prodname").html("*Enter Product Name");
-        $("#prodname").show();
+        $("#prna").html("*Enter Product Name");
+        $("#prna").show();
         $(this).css('border', 'solid 3px red');
     } else if (!$pname.match(/^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$/)) {
-        $("#prodname").html("*Product Name can be alpha-numeric/only alphabetic and one space between words allowed");
-        $("#prodname").show();
+        $("#prna").html("*Product Name can be alpha-numeric/only alphabetic and one space between words allowed");
+        $("#prna").show();
         $(this).css('border', 'solid 3px red');
     } else if (Number.isInteger(ans2)) {
-        $("#prodname").html("*Product Name can be alpha-numeric/only alphabetic and one space between words allowed");
-        $("#prodname").show();
+        $("#prna").html("*Product Name can be alpha-numeric/only alphabetic and one space between words allowed");
+        $("#prna").show();
         $(this).css('border', 'solid 3px red');
     } else {
-        $("#prodname").hide();
+        $("#prna").hide();
         $(this).css('border', 'solid 3px green');
     }
 })
 
-// $("#url").focusout(function() {
+//  $("#url").focusout(function() {
 //     $url = $("#url").val();
 //     if ($url == "" || $url == null) {
 //         $("#urlid").html("*Enter Product Name");
@@ -317,3 +317,101 @@ function validateUpdateForm() {
     // }
     // return true;
 }
+
+$("#prolang").focusout(function() {
+    $prolang = $("#prolang").val();
+    if ($prolang == "") {
+        $("#prodlang").html("*Select lang Space in G.B");
+        $("#prodlang").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red');
+    }  
+    else if(!$prolang.match(/^[a-zA-Z,]+[a-zA-Z]+$/))
+    {
+        $("#prodlang").html("*Select Valid language");
+        $("#prodlang").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red'); 
+    }
+    else if($prolang<.5)
+    {
+        $("#prodlang").html("*Select Valid language");
+        $("#prodlang").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red'); 
+    }
+    else {
+        $("#submit10").attr("disabled",false);
+        $("#prodlang").hide();
+        $(this).css('border', 'solid 3px green');
+    }
+});
+
+
+
+$("#promail").focusout(function() {
+    $promail = $("#promail").val();
+    if ($promail == "") {
+        $("#prodmail").html("*Select Mail");
+        $("#prodmail").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red');
+    }  
+    else if(!$promail.match(/^[0-9]+$/))
+    {
+        $("#prodmail").html("*Select Valid Mail box");
+        $("#prodmail").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red'); 
+    }
+  
+    
+    
+    else {
+        $("#submit10").attr("disabled",false);
+        $("#prodmail").hide();
+        $(this).css('border', 'solid 3px green');
+    }
+
+
+
+});
+
+
+$("#prosku").focusout(function() {
+    $prosku = $("#prosku").val();
+    if ($prosku == "") {
+        $("#prodsku").html("*Select sku");
+        $("#prodsku").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red');
+    }  
+    else if(!$prosku.match(/^[a-zA-z0-9]+[a-zA-Z0-9#-]+$/))
+    {
+        $("#prodsku").html("*Select Valid sku");
+        $("#prodsku").show();
+       $("#submit10").attr("disabled",true);
+
+        $(this).css('border', 'solid 3px red'); 
+    }
+  
+    
+    
+    else {
+        $("#submit10").attr("disabled",false);
+        $("#prodsku").hide();
+        $(this).css('border', 'solid 3px green');
+    }
+
+
+
+});
+
+
+});

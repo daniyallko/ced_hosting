@@ -94,7 +94,7 @@ $part = $adm->categp($admc->conn);
                   <tr>
                     <th scope="col" class="sort" data-sort="name">Category Name</th>
                     <th scope="col" class="sort" data-sort="budget">id</th>
-                    <th scope="col" class="sort" data-sort="status">link</th>
+                    <!-- <th scope="col" class="sort" data-sort="status">link</th> -->
                     <th scope="col">parent</th>
                     <th scope="col">Availability</th>
                     <th scope="col" class="sort" data-sort="completion">Date</th>
@@ -119,12 +119,12 @@ $part = $adm->categp($admc->conn);
                     <td class="budget">
                     <?php echo $val['id']; ?>                    
                     </td>
-                    <td>
+                    <!-- <td>
                       <span class="badge badge-dot mr-4">
                         <i class="bg-warning"></i>
-                        <span class="status"><?php echo $val['link']; ?>  </span>
+                        <span class="status"><?php //echo $val['link']; ?>  </span>
                       </span>
-                    </td>
+                    </td> -->
                     <td>
                     <?php echo $row['prod_name']; ?>  
                     </td>
@@ -188,14 +188,14 @@ $part = $adm->categp($admc->conn);
                     <input class="form-control" name="name" placeholder="Category Name" value="<?php echo $val['prod_name']; ?>" type="text">
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <input class="form-control" name="link" placeholder="Category Link" value="<?php echo $val['link']; ?>" type="text">
+                    <input class="form-control" name="link" placeholder="Category Link" value="<?php //echo $val['link']; ?>" type="text">
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                 <input type="hidden" name="edid" value="<?php echo $val['id']; ?>">
                 
