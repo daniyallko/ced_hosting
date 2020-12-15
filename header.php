@@ -91,7 +91,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</ul>
 								
                                 <li <?php if($file[0]=='contact.php') : ?> class="active"<?php endif; ?>><a href="contact.php">Contact</a></li>
-                                <li <?php if($file[0]=='login.php') : ?>class="active"<?php endif; ?>><a href="login.php">Login</a></li>
+								<?php if(isset($_SESSION['userdata'])){ ?>
+									<li <?php if($file[0]=='logout.php') : ?>class="active"<?php endif; ?>><a href="logout.php">Logout</a></li>
+										<?php } else { ?>
+                                <li <?php if($file[0]=='login.php') : ?>class="active"<?php endif; ?>><a href="login.php">Login</a></li><?php } ?>
                                <li <?php if($file[0]=='cart.php') : ?> class="active"<?php endif; ?>><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></li> 
 							</ul>
 									  

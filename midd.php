@@ -32,7 +32,6 @@ if (isset($_POST['reg']))
     $show=$user->register($name,$password,$password2,$email,$mobile,$ques,$ans,$dbcon->conn);
 
 }
-if(isset($_POST['']))
 
     if(isset($_POST['action']))
     {
@@ -82,23 +81,6 @@ if(isset($_POST['']))
       } else {
         echo $response;
       }
-    //  Promotional Route Success Response:
-    //   {
-    //       "return": true,
-    //       "request_id": "lwdtp7cjyqxvfe9",
-    //       "message": [
-    //           "Message sent successfully to NonDND numbers"
-    //       ]
-    //   }
-    //  Transactional Route Success Response:
-    //   {
-    //       "return": true,
-    //       "request_id": "vrc5yp9k4sfze6t",
-    //       "message": [
-    //           "Message sent successfully"
-    //       ]
-    //   }
-    
     }
   }
 
@@ -134,39 +116,32 @@ if(isset($_POST['']))
         echo "Mailer Error: " . $mail->ErrorInfo;
         }
       }
+    }
     
-  
-     
+if(isset($_POST['varifyEmail']))
+{
+  $email = $_POST['eemail'];
+  $otp = $_POST['emailOTP'];
+  if($otp==$_SESSION['otp1'])
+  {
+    $user = new user();
+	  $dbcon = new dbcon();
+	  $show=$user->verifyEmail($email,$dbcon->conn);
+  }
 
+}
 
-// # ------------------
-// # Create a campaign\
-// # ------------------
-// # Include the Sendinblue library\
-// require_once(__DIR__ . "/APIv3-php-library/autoload.php");
-// # Instantiate the client\
-// SendinBlue\Client\Configuration::getDefaultConfiguration()->setApiKey("api-key", "YOUR_API_V3_KEY");
-// $api_instance = new SendinBlue\Client\Api\EmailCampaignsApi();
-// $emailCampaigns = new \SendinBlue\Client\Model\CreateEmailCampaign();
-// # Define the campaign settings\
-// $email_campaigns['name'] = "Campaign sent via the API";
-// $email_campaigns['subject'] = "My subject";
-// $email_campaigns['sender'] = array("name"=> "From name", "email"=>"turky890@tapi.re");
-// $email_campaigns['type'] = "classic";
-// # Content that will be sent\
-// "htmlContent"=> "Congratulations! You successfully sent this example campaign via the Sendinblue API.",
-// # Select the recipients\
-// "recipients"=> array("listIds"=> [2, 7]),
-// # Schedule the sending in one hour\
-// "scheduledAt"=> "2018-01-01 00:00:01"
-// );
-// # Make the call to the client\
-// try {
-// $result = $api_instance->createEmailCampaign($emailCampaigns);
-// print_r($result);
-// } catch (Exception $e) {
-// echo 'Exception when calling EmailCampaignsApi->createEmailCampaign: ', $e->getMessage(), PHP_EOL;
-// }
+if(isset($_POST['varifyMob']))
+{
+  $mob = $_POST['vmob'];
+  $otp = $_POST['mobOTP'];
+  if($otp==$_SESSION['otp'])
+  {
+    $user = new user();
+	  $dbcon = new dbcon();
+	  $show=$user->verifyMobile($mob,$dbcon->conn);
+  }
+
 }
 
 

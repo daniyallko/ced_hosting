@@ -1,5 +1,7 @@
 <?php 
 require 'header.php'; 
+if(isset($_SESSION['userdata']))
+{
 require '../class/product.php';
 
 $adm = new product();
@@ -159,6 +161,11 @@ $part = $adm->categp($admc->conn);
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="card bg-secondary border-0">
+      <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="card-header bg-transparent pb-5">
               
              <h3 class="text-center">Edit Category</h3>
@@ -261,4 +268,8 @@ $part = $adm->categp($admc->conn);
 
    </div>
   </div>
-<?php require 'footer.php'; ?>
+<?php require 'footer.php'; }
+else{
+  echo '<script>alert("Login First");
+  window.location.href = "../login.php";</script>';
+}?>

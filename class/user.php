@@ -27,22 +27,34 @@ class user{
                      $_SESSION['userdata'] = array('username'=>$row['name'],'user_id'=>$row['user_id'],'is_admin'=>$row['is_admin']);
                      header('Location: admin/index.php');
                      }
-                     if($row['active']==0)
-                     {
-                        echo '<p class="bg-danger text-center">You are not approved by ADMIN</p>';
-                     }
+                     
                      if($row['active']==1 && $row['is_admin']==0){
                         $_SESSION['userdata'] = array('username'=>$row['name'],'user_id'=>$row['id'],'is_admin'=>$row['is_admin']);
                         echo '<script>alert("Login Successful, Going to Index Page");
                      window.location.href = "index.php";</script>';
                      }
-                     
+                     if($row['active']==0)
+                     {
+                         if( $row['email_approved']==0 && $row['phone_approved']==0 )
+                         {
+                            $_SESSION['Varifyuser'] = array('email'=>$email,'mob'=>$row['mobile'],'name'=>$row['name']);
+                            echo '<script>alert("Verification Pending, Going to Index Page");
+                            window.location.href = "otp.php";</script>';
+                         } 
+                         if( $row['email_approved']==1 || $row['phone_approved']==1 )
+                         {
+                            $_SESSION['Varifyuser'] = array('email'=>$email,'mob'=>$row['mobile'],'name'=>$row['name']);
+                            echo '<script>alert("You are blocked by ADMIN, Going to Index Page");
+                            window.location.href = "login.php";</script>';
+                         } 
+                     }
                  } 
              } 
              else 
             {
                 $errors[] = array('input'=>'form','msg'=>'Invalid Login Details');
-                echo '<p class="bg-danger text-center">Invalid Login Details</p>';
+                echo '<script>alert("Invalid Login Details");
+                     window.location.href = "login.php";</script>';
                 
 
             }
@@ -65,7 +77,8 @@ class user{
             $result = $conn->query($sql);
             if ($result->num_rows > 0) {
                 $errors[] = array('input' => 'result', 'msg' => 'Username already exists');
-                echo '<p class="bg-danger text-center">E-mail id already registered</p>';
+                echo '<script>alert("Email already Registerd");
+                     window.location.href = "index.php";</script>';
                 
             }
         }
@@ -101,27 +114,33 @@ class user{
            
     }
 
-    function verifyEmail($connn,$email) {
+    function verifyEmail($email,$conn) {
 
-        $sql="UPDATE tbl_user SET `email_approved`=1 , `active`=1 WHERE `email`='".$email."'";
-        if($connn->con->query($sql)==true) {
+        $sql="UPDATE tbl_user SET `email_approved`=1 , `active`=1 WHERE `email`='$email'";
+        if($conn->query($sql)==true) {
 
-           unset($_SESSION['email']);
-           unset($_SESSION['name']);
-           unset($_SESSION['mobile']);
-           unset($_SESSION['otp']);
+           unset($_SESSION['Varifyuser']);
+           echo '<script>alert("Verification Successful, Going to User Page");
+           window.location.href = "index.php";</script>'; 
+          
+        }
+        else{
+            echo $conn->error;
         }
     }
 
-    function verifyMobile($connn,$mobile) {
+    function verifyMobile($mob,$conn) {
 
-        $sql="UPDATE tbl_user SET `phone_approved`=1 , `active`=1 WHERE `mobile`='".$mobile."'";
-        if($connn->con->query($sql)==true) {
+        $sql="UPDATE tbl_user SET `phone_approved`=1 , `active`=1 WHERE `mobile`='$mob'";
+        if($conn->query($sql)==true) {
 
-            unset($_SESSION['email']);
-            unset($_SESSION['name']);
-            unset($_SESSION['mobile']);
-            unset($_SESSION['otp1']);
+            unset($_SESSION['Varifyuser']);
+            echo '<script>alert("Verification Successful, Going to User Page");
+           window.location.href = "index.php";</script>'; 
+            
+        }
+        else{
+            echo $conn->error;
         }
     }
 

@@ -1,7 +1,8 @@
 <?php 
 
 require 'header.php'; 
-
+if(isset($_SESSION['userdata']))
+{
 require '../class/product.php';
 $adm = new product();
 $admc = new dbcon();
@@ -123,16 +124,16 @@ $show = $adm->categ($admc->conn);
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" maxlength="5" for="input-username">Web Space(in GB)</label>
-                            <input type="text" name="wspace" id="webid" class="form-control" placeholder="Web Space(in GB)" required>
+                            <label class="form-control-label"  for="input-username">Web Space(in GB)</label>
+                            <input type="text" name="wspace" maxlength="5" id="webid" class="form-control" placeholder="Web Space(in GB)" required>
                             <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                             <p id="laweb"></p>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label class="form-control-label" maxlength="5" for="input-email">Bandwidth (in GB)</label>
-                            <input type="text" name="band" id="bandid" class="form-control" placeholder="Bandwidth (in GB)" required>
+                            <label class="form-control-label"  for="input-email">Bandwidth (in GB)</label>
+                            <input type="text" name="band" maxlength="5" id="bandid" class="form-control" placeholder="Bandwidth (in GB)" required>
                             <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                         <p id="laband"></p>
                         </div>
@@ -175,7 +176,12 @@ $show = $adm->categ($admc->conn);
     </div>
     <!-- Footer -->
     
-    <?php include('footer.php'); ?>
+    <?php include('footer.php'); 
+    }
+    else{
+      echo '<script>alert("Login First");
+      window.location.href = "../login.php";</script>';
+    }?>
     <script>
         $('#apbtn').attr('disabled',true);
 $pc=0;
@@ -287,7 +293,7 @@ $("#skuid").focusout(function() {
         $(this).css('border', 'solid 3px red');
         $su=0;
     }  
-    else if(!$prosku.match(/^[a-zA-z0-9]+[a-zA-Z0-9#-]+$/))
+    else if(!$prosku.match(/^[#a-zA-z0-9]+[a-zA-Z0-9#-]+$/))
     {
         $("#lasku").html("*Select Valid sku");
         $("#lasku").show();
@@ -385,18 +391,25 @@ $la=0;
 $("#langid").focusout(function() {
     $prolang = $("#langid").val();
     if ($prolang == "") {
-        $("#lalang").html("*Select lang Space in G.B");
+        $("#lalang").html("*Select Valid language");
         $("#lalang").show();
         $(this).css('border', 'solid 3px red');
         $la=0;
     }  
-    else if(!$prolang.match(/^[a-zA-Z,]+[a-zA-Z]+$/))
+    else if(!$prolang.match(/^([a-zA-Z0-9]+(,[a-zA-z0-9]+))+$/))
     {
         $("#lalang").html("*Select Valid language");
         $("#lalang").show();
         $(this).css('border', 'solid 3px red'); 
         $la=0;
+        if($prolang.match(/^[a-zA-Z0-9]+$/))
+        {
+            $("#lalang").hide();
+            $(this).css('border', 'solid 3px green');
+            $la=1;
+        }
     }
+    
     else if($prolang<.5)
     {
         $("#lalang").html("*Select Valid language");

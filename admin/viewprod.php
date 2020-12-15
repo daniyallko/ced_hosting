@@ -1,5 +1,7 @@
 <?php 
 require 'header.php'; 
+if(isset($_SESSION['userdata']))
+{
 require '../class/product.php';
 
 $adm = new product();
@@ -152,10 +154,16 @@ $part = $adm->categ($admc->conn);
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="card bg-secondary border-0">
+      <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
             <div class="card-header bg-transparent pb-5">
               
              <h3 class="text-center">Edit Product</h3>
             </div>
+            
             <div class="card-body px-lg-5 py-lg-5">
               
               <form role="form" action="amidd.php" method="post">
@@ -318,4 +326,8 @@ $part = $adm->categ($admc->conn);
 
    </div>
   </div>
-<?php require 'footer.php'; ?>
+<?php require 'footer.php';}
+else{
+  echo '<script>alert("Login First");
+  window.location.href = "../login.php";</script>';
+} ?>

@@ -12,11 +12,13 @@ var count_pass=0;
 var count_cpass=0;
 var c=0;
 var v=0;
+var pat = /(\d)\1{9}/g;
 
-$("#mobile").bind("keyup", function (e) {
+$("#mobile").bind("keydown keyup keypress", function (e) {
 
     mobile_no=$("#mobile").val();
     count_mob+=$("#mobile").length;
+    var mob1 = $("#mobile").val().substr(1, 10);
 
     var fchar=$("#mobile").val().substr(0, 1);
     var schar=$("#mobile").val().substr(1,1);
@@ -24,22 +26,27 @@ $("#mobile").bind("keyup", function (e) {
     if(fchar==0) {
         $('#mobile').attr('maxlength','11');
         $('#mobile').attr('minlength','11');
-        if(count_mob==10) {
-            for(i=1;i<11;i++) {
-                var a=$("#mobile").val().substr(i,1);
-                var b=$("#mobile").val().substr(i+1,1);
-                if(a==b) {
-                    v++;
-                    
-                }
-                if(v==10) {
+    
+            if (pat.test(mob1)) {
+                mob1 = "";
+                alert('invalid Mobile Number');
                 $("#mobile").val("");
-                count_mob=0;
-                v=0;
+            // for(i=1;i<11;i++) {
+            //     var a=$("#mobile").val().substr(i,1);
+            //     var b=$("#mobile").val().substr(i+1,1);
+            //     if(a==b) {
+            //         v++;
+                    
+            //     }
+            //     if(v==10) {
+            //         alert('invalid Mobile Number');
+            //     $("#mobile").val("");
+            //     count_mob=0;
+            //     v=0;
 
-                }
+            //     }
             }
-        }
+        
         if(schar==0)
         {
             $("#mobile").val(0);
@@ -57,22 +64,32 @@ $("#mobile").bind("keyup", function (e) {
         $('#mobile').attr('minlength','10');
         //console.log(count_mob2);
         console.log(count_mob);
-        if(count_mob==10) {
-        for(i=0;i<10;i++) {
-            var a=$("#mobile").val().substr(i,1);
-            var b=$("#mobile").val().substr(i+1,1);
-            if(a==b) {
-                v++;
-                
-                
-            }
-            if(v==9) {
+      
+
+            if (pat.test(mobile_no)) {
+                alert('invalid Mobile Number');
                 $("#mobile").val("");
                 count_mob=0;
-                v=0;
+                mobile_no = "";
+                $("#mobile").val("");
+      
 
-            }
-        }
+        // for(i=0;i<10;i++) {
+        //     var a=$("#mobile").val().substr(i,1);
+        //     var b=$("#mobile").val().substr(i+1,1);
+        //     if(a==b) {
+        //         v++;
+                
+                
+        //     }
+            // if(v==9) {
+            //     alert('invalid Mobile Number');
+            //     $("#mobile").val("");
+            //     count_mob=0;
+            //     v=0;
+
+            // }
+        // }
     }
     }
 });
@@ -203,6 +220,7 @@ $('#sendemailOTP').click(function(){
 
 $('.entermobOTP1').hide();
 $('#sendmobOTP').click(function(){
+    console.log('mobotp');
     $mob = $("#mobvalue").val();
     $name = $("#namevalue1").val();
     $.ajax({
@@ -214,10 +232,9 @@ $('#sendmobOTP').click(function(){
             action: 'sendOTPmob'
         },
         success: function(result) {
+            $("#sendmobOTP").hide();
+            $(".entermobOTP1").show();
             console.log(result);
-            
-            $(".sendemobOTP").hide();
-            $(".enteremobOTP1").show();
         },
         error: function() {
 
@@ -249,6 +266,7 @@ $("#resendOTPtomail").click(function() {
 })
 
 $('#reentermobOTP').click(function(){
+    console.log('remobotp');
     $mob = $("#mobvalue").val();
     $name = $("#namevalue1").val();
     $.ajax({

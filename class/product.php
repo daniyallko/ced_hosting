@@ -5,7 +5,7 @@ class product
 {
     function categ($conn)
     {
-        $sql = "SELECT * FROM tbl_product WHERE link IS NOT NULL ";
+        $sql = "SELECT * FROM tbl_product WHERE prod_parent_id=1 ";
         $result = $conn->query($sql);
         $appr=array();
         while($row = $result->fetch_assoc()){
@@ -121,7 +121,7 @@ class product
 
     function catpagev($id,$conn)
     {
-        $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id WHERE tbl_product.prod_parent_id=$id";
+        $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id WHERE tbl_product.prod_parent_id=$id AND tbl_product.prod_available=1";
         $result = $conn->query($sql);
         $appr=array();
         while($row = $result->fetch_assoc()){

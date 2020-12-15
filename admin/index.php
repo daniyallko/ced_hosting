@@ -1,4 +1,8 @@
-<?php require 'header.php'; ?>
+<?php require 'header.php'; 
+if(isset($_SESSION['userdata']))
+{
+
+?>
     <!-- Header -->
     <div class="header bg-primary pb-6">
       <div class="container-fluid">
@@ -389,4 +393,8 @@
           </div>
         </div>
       </div>
-<?php require 'footer.php'; ?>
+<?php require 'footer.php';}
+else{
+  echo '<script>alert("Login First");
+  window.location.href = "../login.php";</script>';
+} ?>

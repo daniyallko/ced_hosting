@@ -15,9 +15,9 @@ if(isset($_GET['id']))
     $show1 = $adm->catpagev($id,$admc->conn);
 
 ?>
-<div class="tab-prices">
+<div class="tab-prices" >
 						<div class="container">
-							<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+							<div class="bs-example bs-example-tabs" id="tab" role="tabpanel" data-example-id="togglable-tabs">
 								
 								<div id="myTabContent" class="tab-content">
                                <?php foreach($show1 as $key1=>$val1){
@@ -72,7 +72,10 @@ if(isset($_GET['id']))
        <!-- clients -->
 					<div class="whatdo">
 						<div class="container">
-							<h3>Windows Features</h3>
+							<h3><?php foreach($show as $key=>$val)
+								{
+									echo $val['prod_name'];
+								} ?> Features</h3>
 							<div class="what-grids">
 								<div class="col-md-4 what-grid">
 									<div class="what-left">

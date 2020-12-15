@@ -6,7 +6,7 @@
     <div class="main-1">
         <div class="container">
 
-            <?php// if (isset($_SESSION['Varifyuser'])) {?>
+            <?php if (isset($_SESSION['Varifyuser'])) {?>
 
             <div class="register">
                 <div class="register-but">
@@ -17,7 +17,7 @@
                             <div>
                                 <span>Email Address<label>*</label></span>
                                 <p><label><?php echo $_SESSION['Varifyuser']['email'] ?></label></p>
-                                <input type="hidden" value="<?php echo $_SESSION['Varifyuser']['email'] ?>"
+                                <input type="hidden" name="eemail" value="<?php echo $_SESSION['Varifyuser']['email'] ?>"
                                     id="emailvalue">
                                     <input type="hidden" value="<?php echo $_SESSION['Varifyuser']['name'] ?>"
                                     id="namevalue">
@@ -45,7 +45,7 @@
                                 <p><label><?php echo $_SESSION['Varifyuser']['mob'] ?></label></p>
                                 <input type="hidden" value="<?php echo $_SESSION['Varifyuser']['name'] ?>"
                                     id="namevalue1">
-                                <input type="hidden" value="<?php echo $_SESSION['Varifyuser']['mob'] ?>" id="mobvalue">
+                                <input type="hidden" name="vmob" value="<?php echo $_SESSION['Varifyuser']['mob'] ?>" id="mobvalue">
                                 <input type="text" name="mobOTP"  class="entermobOTP1" placeholder="Enter OTP">
                                 <span class="entermobOTP">Varification code has been sent on
                                     <?php echo $_SESSION['Varifyuser']['mob'] ?></span>
@@ -61,11 +61,11 @@
                     </form>
                 </div>
             </div>
-            <?php //} else { ?>
+            <?php } else { ?>
             <h3 class="text-center pbtm-10 font-large">Please login or Register for varification</h3>
             <h3 class="text-center pbtm-10 "><a href="login.php">Click here to login</a> OR <a href="account.php">Click
                     here to Register</a></h3>
-            <?php //} ?>
+            <?php } ?>
         </div>
     </div>
     <!-- registration -->
