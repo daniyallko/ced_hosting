@@ -295,7 +295,7 @@ $part = $adm->categ($admc->conn);
             <div class="modal-body">
             	
                 <div class="py-3 text-center">
-                <i class="fas fa-exclamation-triangle"></i>
+                <i class="fas fa-exclamation-triangle ni-5x"></i>
                     <h4 class="heading mt-4">Delete <?php echo $val['prod_name']; ?></h4>
                 </div>
                 

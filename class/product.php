@@ -130,6 +130,17 @@ class product
         return $appr;
     }
 
+    function proadd($id,$conn)
+    {
+        $sql = "SELECT * FROM tbl_product INNER JOIN tbl_product_description ON tbl_product.id = tbl_product_description.prod_id WHERE tbl_product.id=$id AND tbl_product.prod_available=1";
+        $result = $conn->query($sql);
+        $appr=array();
+        while($row = $result->fetch_assoc()){
+            array_push($appr, $row);
+        }
+        return $appr;
+    }
+
     function eprod($cname,$parnt,$link,$id,$mprice,$aprice,$sku,$jdesc,$ava,$conn)
     {
         $sql = "UPDATE tbl_product SET prod_name='$cname' , link = '$link' , prod_parent_id=$parnt , prod_available = $ava WHERE id = $id";

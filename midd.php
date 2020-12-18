@@ -1,11 +1,14 @@
 <?php
 session_start();
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+//use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\Exception;
+//require 'vendor/autoload.php';
+use \Mailjet\Resources;
 require '/home/cedcoss/vendor/autoload.php';
 include ('class/user.php'); 
 $errors = array();
 $message = '';
+
 
 if (isset($_POST['log']))
 {
@@ -83,40 +86,109 @@ if (isset($_POST['reg']))
       }
     }
   }
+  //497465BAD17168BA7F432A8A09BE70AE514FBCB42FEDF5ECBD09CDEB75C29364D619F6F546CB767E3F20BFB2D23EB0D1
 
-   if(isset($_POST['action']))
-    {
-      if($_POST['action']=='sendOTPEmail'){
-        $name=$_POST['name'];
-        $email=$_POST['email'];
 
-        $otp1 = rand(1000,9999);
-        $_SESSION['otp1']=$otp1;
-        $mail = new PHPMailer();
-        try {
-        $mail->isSMTP(true);
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = 'galedhoni@gmail.com';
-        $mail->Password = 'q1w2e3r4T5@';
-        $mail->SMTPSecure = 'tls';
-        $mail->Port = 587;
-        
-        $mail->setfrom('galedhoni@gmail.com', 'CedHosting');
-        $mail->addAddress($email);
-        $mail->addAddress($email, $name);
-        
-        $mail->isHTML(true);
-        $mail->Subject = 'Account Verification';
-        $mail->Body = 'Hi '.$name.' ,Here is your otp for account verification '.$otp1;
-        $mail->AltBody = 'Body in plain text for non-HTML mail clients';
-        $mail->send();
-        // header('location: otp.php?email=' . $email);
-        } catch (Exception $e) {
-        echo "Mailer Error: " . $mail->ErrorInfo;
+  if(isset($_POST['action']))
+      {
+        if($_POST['action']=='sendOTPEmail'){
+          $name=$_POST['name'];
+          $email=$_POST['email'];
+  
+          $otp1 = rand(1000,9999);
+          $_SESSION['otp1']=$otp1;
+
+          $mj = new \Mailjet\Client('41849414927147845fdf7cdae3de34c5','4cb20e5157e76ab2cf695adb2eb1048c',true,['version' => 'v3.1']);
+  $body = [
+    'Messages' => [
+      [
+        'From' => [
+          'Email' => "cedhosting@dandrive.tk",
+          'Name' => "cedHosting"
+        ],
+        'To' => [
+          [
+            'Email' => $email,
+            'Name' => "cedHosting"
+          ]
+        ],
+        'Subject' => "Verification OTP",
+        'TextPart' => 'Hi '.$name.' ,Here is your otp for account verification '.$otp1,
+        'HTMLPart' => 'Hi '.$name.' ,Here is your otp for account verification '.$otp1,
+        'CustomID' => "AppGettingStartedTest"
+      ]
+    ]
+  ];
+  $response = $mj->post(Resources::$Email, ['body' => $body]);
+  $response->success() && var_dump($response->getData());
+
+  // $url = 'https://api.elasticemail.com/v2/email/send';
+
+  // try{
+  //         $post = array('from' => 'cedhosting@dandrive.tk',
+  //     'fromName' => 'CedHosting',
+  //     'apikey' => '497465BAD17168BA7F432A8A09BE70AE514FBCB42FEDF5ECBD09CDEB75C29364D619F6F546CB767E3F20BFB2D23EB0D1',
+  //     'subject' => 'Verification Email',
+  //     'to' => $email,
+  //     'bodyHtml' => 'Hi '.$name.' ,Here is your otp for account verification '.$otp1,
+  //     'bodyText' => 'CedHosting',
+  //     'isTransactional' => true);
+      
+  //     $ch = curl_init();
+  //     curl_setopt_array($ch, array(
+  //             CURLOPT_URL => $url,
+  //       CURLOPT_POST => true,
+  //       CURLOPT_POSTFIELDS => $post,
+  //             CURLOPT_RETURNTRANSFER => true,
+  //             CURLOPT_HEADER => false,
+  //       CURLOPT_SSL_VERIFYPEER => false
+  //         ));
+      
+  //         $result=curl_exec ($ch);
+  //         curl_close ($ch);
+      
+  //         echo $result;	
+  // }
+  // catch(Exception $ex){
+  //   echo $ex->getMessage();
+  // }
         }
       }
-    }
+
+
+//    if(isset($_POST['action']))
+//     {
+//       if($_POST['action']=='sendOTPEmail'){
+//         $name=$_POST['name'];
+//         $email=$_POST['email'];
+
+//         $otp1 = rand(1000,9999);
+//         $_SESSION['otp1']=$otp1;
+//         $mail = new PHPMailer();
+//         try {
+//         $mail->isSMTP(true);
+//         $mail->Host = 'smtp.elasticemail.com';
+//         $mail->SMTPAuth = true;
+//         $mail->Username = 'cedhosting@dandrive.tk';
+//         $mail->Password = '8323EC46B58F79BD246BF9F7A54463732AFE';
+//         $mail->SMTPSecure = 'tls';
+//         $mail->Port = 2525;
+        
+//         $mail->setfrom('cedhosting@dandrive.tk', 'CedHosting');
+//         $mail->addAddress($email);
+//         $mail->addAddress($email, $name);
+        
+//         $mail->isHTML(true);
+//         $mail->Subject = 'Account Verification';
+//         $mail->Body = 'Hi '.$name.' ,Here is your otp for account verification '.$otp1;
+//         $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+//         $mail->send();
+//         // header('location: otp.php?email=' . $email);
+//         } catch (Exception $e) {
+//         echo "Mailer Error: " . $mail->ErrorInfo;
+//         }
+//       }
+//     }
     
 if(isset($_POST['varifyEmail']))
 {

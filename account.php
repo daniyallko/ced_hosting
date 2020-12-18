@@ -101,3 +101,23 @@ for="password2" minlength="8" maxlength="16"
 </div>
 <!-- login -->
 <?php require 'footer.php'; ?>
+<script>
+function validate() {
+    
+    if ($('#password').val() != $('#password2').val()) {
+        alert('Both Passwords are not same');
+        $('#password').val("");
+        $('#password2').val("");
+        return false;
+    }
+    if (Number.isInteger(parseInt($('#ans').val()))) {
+        alert('Enter Answer in Correct Fornat');
+        $('#ans').val("");
+        return false;
+    }
+    else {
+        return true;
+    }
+
+}
+</script>

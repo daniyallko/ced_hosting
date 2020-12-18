@@ -1,5 +1,9 @@
 <?php 
 session_start();
+if(!isset($_SESSION['cart']))
+{
+  $_SESSION['cart']= array();
+}
 
 require 'class/product.php';
 
@@ -31,6 +35,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 <!---fonts-->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" type="text/css">
 
 <!--script-->
 <script src="js/modernizr.custom.97074.js"></script>
@@ -95,7 +100,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li <?php if($file[0]=='logout.php') : ?>class="active"<?php endif; ?>><a href="logout.php">Logout</a></li>
 										<?php } else { ?>
                                 <li <?php if($file[0]=='login.php') : ?>class="active"<?php endif; ?>><a href="login.php">Login</a></li><?php } ?>
-                               <li <?php if($file[0]=='cart.php') : ?> class="active"<?php endif; ?>><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></li> 
+                               <li <?php if($file[0]=='cart.php') : ?> class="active"<?php endif; ?>><a href="cart.php"><i class="fas fa-shopping-cart "></i>
+							   <?php if(isset($_SESSION['cart'])){ ?>
+							   <span class="badge"><?php echo count($_SESSION['cart']); ?></span><?php } ?></a></li> 
 							</ul>
 									  
 						</div><!-- /.navbar-collapse -->

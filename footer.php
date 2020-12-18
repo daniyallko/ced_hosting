@@ -95,7 +95,7 @@
 							<div class="clearfix"></div>
 						</div>
 						<div class="copy-section">
-							<p>&copy; 2016 Planet Hosting. All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+							<p>&copy; 2020 CedHosting. All rights reserved</p>
 						</div>
 					</div>
 				</div>
@@ -103,5 +103,6 @@
 			
 			
 </body>
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script src="js/script.js"></script>
 </html>

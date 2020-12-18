@@ -174,24 +174,7 @@ $('#email').bind("keypress keyup keydown", function (e){
     }
 });
 
-function validate() {
-    
-    if ($('#password').val() != $('#password2').val()) {
-        alert('Both Passwords are not same');
-        $('#password').val("");
-        $('#password2').val("");
-        return false;
-    }
-    if (Number.isInteger(parseInt($('#ans').val()))) {
-        alert('Enter Answer in Correct Fornat');
-        $('#ans').val("");
-        return false;
-    }
-    else {
-        return true;
-    }
 
-}
 $('.enteremailOTP').hide();
 $('#sendemailOTP').click(function(){
     console.log('send email');

@@ -42,12 +42,39 @@ if(isset($_GET['id']))
 													<li><strong>location</strong> : <img src="images/india.png"></li>
 													</ul>
 												</div>
-												<a href="#">buy now</a>
+												<?php $ct=0; foreach($_SESSION['cart'] as $key2=>$val2){ if($val1['prod_id']==$val2['id']){ ?>
+												<a href="cart.php">Go to cart</a>
+												<?php $ct=1; }} if($ct==0){ ?>
+												<a data-toggle="modal" data-target="#modal<?php echo $val1['prod_id'] ?>">Add to Cart</a>
+												<?php } ?>
+											</div>
+											<div class="modal fade" id="modal<?php echo $val1['prod_id'] ?>" role="dialog">
+												<div class="modal-dialog">
+												
+												<!-- Modal content-->
+												<div class="modal-content">
+													<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal">&times;</button>
+													<h4 class="modal-title">Choose Plan</h4>
+													</div>
+													<div class="modal-body">
+													<p>Choose Yor Plan</p>
+													</div>
+													<div class="modal-footer">
+													<a class="btn btn-default" href="addcart.php?action=addm&&id=<?php echo $val1['prod_id'] ?>" >Monthly</a>
+													<a class="btn btn-default" href="addcart.php?action=adda&&id=<?php echo $val1['prod_id'] ?>" >Annual</a>
+													</div>
+												</div>
+												
+												</div>
 											</div>
 											<?php } ?>
 											<div class="clearfix"></div>
+
 										</div>
 									</div>
+	
+  
 									
 											<div class="clearfix"></div>
 										</div>
@@ -146,6 +173,7 @@ if(isset($_GET['id']))
 					</div>
 
 				</div>
+	
 <?php }
 else{
     echo '<h1 class="text-center">Kyu Kar Rahe Ho Aisa</h1>';

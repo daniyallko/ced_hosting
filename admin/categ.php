@@ -195,14 +195,15 @@ $part = $adm->categp($admc->conn);
                     <input class="form-control" name="name" placeholder="Category Name" value="<?php echo $val['prod_name']; ?>" type="text">
                   </div>
                 </div>
-                <!-- <div class="form-group">
+                <div class="form-group">
                   <div class="input-group input-group-merge input-group-alternative">
                     <div class="input-group-prepend">
                       <span class="input-group-text"></span>
                     </div>
-                    <input class="form-control" name="link" placeholder="Category Link" value="<?php //echo $val['link']; ?>" type="text">
+                    <textarea   name="link" id="" cols="30" placeholder="Category Html" rows="10" value="<?php echo $val['link']; ?>"></textarea>
+                    <!-- <input class="form-control" name="link" placeholder="Category Link" value="<?php //echo $val['link']; ?>" type="text"> -->
                   </div>
-                </div> -->
+                </div>
                 <div class="form-group">
                 <input type="hidden" name="edid" value="<?php echo $val['id']; ?>">
                 
@@ -237,7 +238,7 @@ $part = $adm->categp($admc->conn);
             <div class="modal-body">
             	
                 <div class="py-3 text-center">
-                <i class="fas fa-exclamation-triangle"></i>
+                <i class="fas fa-exclamation-triangle ni-5x"></i>
                     <h4 class="heading mt-4">Delete <?php echo $val['prod_name']; ?></h4>
                 </div>
                 
