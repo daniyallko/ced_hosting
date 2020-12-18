@@ -24,6 +24,7 @@ if(isset($_SESSION['cart']))
         $pid = $val['prod_parent_id'];
         $desc = $val['description'];
         $mprice = $val['mon_price'];
+        $sku = $val['sku'];
         
       }
       $jdesc = json_decode($desc);
@@ -36,7 +37,7 @@ if(isset($_SESSION['cart']))
                   $row = $pname->fetch_assoc();
                   $pn = $row['prod_name'];
 
-      $cart=array('name'=>$name,'wspace'=>$wspace,'band'=>$band,'dom'=>$dom,'lang'=>$lang,'pn'=>$pn,'price'=>$mprice,'plan'=>'Monthly','id'=>$id);
+      $cart=array('name'=>$name,'sku'=>$sku,'wspace'=>$wspace,'band'=>$band,'dom'=>$dom,'lang'=>$lang,'pn'=>$pn,'price'=>$mprice,'plan'=>'Monthly','id'=>$id);
       array_push($_SESSION['cart'],$cart);
 
       echo '<script>alert("Product added to cart");
